@@ -39,6 +39,7 @@ header {
 /**
  * Grid styles
  */
+
 .item__overlay {
   position: absolute;
   top: 0;
@@ -54,6 +55,10 @@ header {
 }
 .item__overlay:focus > button, .item__overlay:hover > button {
   opacity: 1;
+}
+
+.grid {
+  margin: 0 auto;
 }
 
 .grid__sizer,

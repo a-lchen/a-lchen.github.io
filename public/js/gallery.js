@@ -6,6 +6,10 @@
     gutter: 15,
     percentPosition: true
   });
+
+$grid.imagesLoaded().progress( function() {
+  $grid.masonry('layout');
+});
   // Image replacement handler
   $(document).on("click", ".js-button", function() {
     var imageSrc = $(this).parents(".grid__item").find("img").attr("src");
