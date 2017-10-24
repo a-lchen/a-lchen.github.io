@@ -52,7 +52,7 @@ router.get('/lovebug-gallery', function(req, res, next) {
 
 
 
-
+/*
 router.get('/upload', (req, res) => {
     console.log('uploaded, redirecting')
     //add some kind of notifaciotn
@@ -72,5 +72,5 @@ router.post('/upload', upload.single('fileInput'), (req, res) => {
 router.get('/image', function (req, res) {
     res.sendfile(path.resolve('./uploads/jenna1.jpg'));
 }); 
-
+*/
 module.exports = router;
