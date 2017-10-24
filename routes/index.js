@@ -8,13 +8,13 @@ var multer = require('multer')
 //var aws = require('aws-sdk')
 var multerS3 = require('multer-storage-s3')
 //s3 = new aws.S3();
-
+/*
 //aws.config.update({
     secretAccessKey: '1CUKv8kGixh9eSbO7kcd+vNPvgUcE0DXnkqfrYtY'
 ,
     accessKeyId: 'AKIAJGJLPYFT6NFYVO5A',
     region: 'us-west-2'
-});
+});*/
 
 /*
 var upload = multer({
