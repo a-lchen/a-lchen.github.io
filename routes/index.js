@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var fs = require('fs')
-var util = require('util')
-var mime = require("mime");
+//var fs = require('fs')
+//var util = require('util')
+//var mime = require("mime");
 const bodyParser = require('body-parser')
-var multer = require('multer')
+//var multer = require('multer')
 //var aws = require('aws-sdk')
-var multerS3 = require('multer-storage-s3')
+//var multerS3 = require('multer-storage-s3')
 //s3 = new aws.S3();
 /*
 //aws.config.update({
