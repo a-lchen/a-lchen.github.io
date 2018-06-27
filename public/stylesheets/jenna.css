@@ -13,6 +13,21 @@ header {
   padding-bottom: 2rem;
 }
 
+.entry {
+  margin: 20px;
+  background-color: rgb(245,245,245);
+  text-align: left;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+
+}
+
+.entry-title{
+  text-align: center;
+}
+
 /**
  * Button component
  */

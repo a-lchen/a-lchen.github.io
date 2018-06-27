@@ -50,6 +50,10 @@ router.get('/lovebug-gallery', function(req, res, next) {
     res.render('lovebug-gallery')
 });
 
+router.get('/thoughts', function(req, res, next) {
+  // res.render('index', { title: 'Express' });
+    res.render('thoughts')
+});
 
 
 /*
