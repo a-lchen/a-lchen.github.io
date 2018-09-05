@@ -1,0 +1,132 @@
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Poiret+One'>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css'>
+<link rel="stylesheet" href="stylesheets/syncotrackjackets.css">
+<h1 class="title">Synco Track Jackets</h1>
+<div class="form-container">
+
+    <div class="form-element">
+        Your Name <br> <input class="name-input" id="name">
+    </div>
+
+    <div class="form-element">
+        Email <br> <input class="name-input" id="email">
+    </div>
+
+    <div class="main-button-holder">
+        <button onClick="toggleForm(1)" class="homepage-button">Contribute a Donation!</button>
+
+        <button onClick="toggleForm(2)" class="homepage-button">Contribute/Buy a full jacket</button>
+    </div>
+
+    <div style="display:none" id="contribute-donation">
+        <div class="form-element">
+            Amount to Contribute<br> <input class="contribute-input" id="contribute-input">
+        </div>
+
+        <div class="form-element">
+            Message for the group? (optional) <br> <textarea style="text-align: left" id="donation-message-input"></textarea>
+        </div>
+
+        <div class="form-element">
+            Venmo Username or other form of payment? <br> <input id="payment-donation-input">
+        </div>
+
+        <button onclick="submitContributeDonation()" class="homepage-button submit-button">submit</button>
+    </div>
+
+
+    <div style="display:none" id="contribute-jacket">
+        <!--Place for members to choose from-->
+        <div class="form-element">
+            Which Syncos (if any) do you want to order a jacket for?
+            <div id="member-buttons">
+                <button class="homepage-button member-button">Chris Chang (tenor)</button>
+                <button class="homepage-button member-button">Daniel Liu (bari)</button>
+                <button class="homepage-button member-button">Daniel Whatley (bari)</button>
+                <button class="homepage-button member-button">Emily Hu (mezzo)</button>
+                <button class="homepage-button member-button">Janice Yang (sop)</button>
+                <button class="homepage-button member-button">Justin Park (bass)</button>
+                <button class="homepage-button member-button">Kevin Mao (tenor)</button>
+                <button class="homepage-button member-button">Maddy Zhang (sop)</button>
+                <button class="homepage-button member-button">Melody Phu (alto)</button>
+                <button class="homepage-button member-button">Rachel Zhang (mezzo)</button>
+                <button class="homepage-button member-button">Shannon Hwang (mezzo)</button>
+                <button class="homepage-button member-button">TC Qin (bass)</button>
+                <button class="homepage-button member-button">Tianyi Zeng (tenor)</button>
+            </div>
+        </div>
+        <div class="form-element">
+            Message for your contributee? (optional)<br> <textarea style="text-align: left" id="full-message-input"></textarea>
+        </div>
+
+        <div class="form-element">
+            Do you want a jacket? (optional) <br> <input id="want-one-input">
+        </div>
+
+        <div class="form-element">
+            If yes to previous: address and size <br> <textarea id="orderer-info-input"></textarea>
+        </div>
+
+        <div class="form-element">
+            Venmo Username or other form of payment? <br> <input id="payment-contribute-input">
+        </div>
+
+        <button onclick="submitContributeJacket()" class="homepage-button submit-button">submit</button>
+    </div>
+</div>
+
+<div id="error" style="display: none">
+    Uh oh! Looks like you forgot some fields.
+</div>
+
+<script>
+    let btnContainer = document.getElementById("member-buttons");
+
+    let btns = btnContainer.getElementsByClassName("member-button");
+
+    for (let i = 0; i < btns.length; i++) {
+        console.log(i);
+        btns[i].addEventListener("click", function() {
+            console.log(this.innerText)
+            if (this.className.includes("active")) {
+                this.className = this.className.replace(" active", "");
+            }
+            else {
+                this.className += " active";
+            }
+        });
+    }
+
+    function submitContributeJacket() {
+        if (!document.getElementById("name").value || !document.getElementById("email").value) {
+            document.getElementById("error").style.display = "block";
+        }
+        else {
+            let info = {
+                "name": document.getElementById("name").value,
+                "email": document.getElementById("email").value,
+                "message": document.getElementById("full-message-input").value,
+                "want-one": document.getElementById("want-one-input").value,
+                "orderer-info": document.getElementById("want-one-input").value,
+                "payment": document.getElementById("payment-contribute-input").value,
+
+            }
+
+            console.log(info);
+        }
+    }
+    function toggleForm(formIndex) {
+        if (formIndex === 1) {
+            document.getElementById("contribute-donation").style.display = "block";
+            document.getElementById("contribute-jacket").style.display = "none";
+        }
+        if (formIndex === 2) {
+            document.getElementById("contribute-donation").style.display = "none";
+            document.getElementById("contribute-jacket").style.display = "block";
+        }
+    }
+
+
+</script>
+
+<script src="js/syncotrackjackets.js"></script>

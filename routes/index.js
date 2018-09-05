@@ -55,6 +55,11 @@ router.get('/thoughts', function(req, res, next) {
     res.render('thoughts')
 });
 
+router.get('/syncotrackjackets', function(req, res, next) {
+    // res.render('index', { title: 'Express' });
+    res.render('syncotrackjackets')
+});
+
 
 /*
 router.get('/upload', (req, res) => {

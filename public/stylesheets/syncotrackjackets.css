@@ -1,0 +1,125 @@
+body {
+    background-color: #333333;
+    padding: 15px;
+}
+
+h1 {
+    /*color: rgb(68,196,236);*/
+    color: white;
+    font-size: 45px;
+    font-weight: 400;
+}
+
+.title {
+    text-align: center;
+}
+
+.form-container {
+    color: white;
+    text-align: center;
+}
+
+
+
+.main-button-holder {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+
+}
+
+.homepage-button {
+    height: 60px;
+    cursor: pointer;
+
+
+    background-color: transparent;
+    color: rgb(68,196,236);
+    font-weight: 400;
+    line-height: 1;
+    transition: background-color 300ms, border-color 300ms, box-shadow 150ms;
+    width: 30%;
+    min-width: 10rem;
+    border-radius: 0.75rem;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+    min-height: 3rem;
+
+    color: rgb(68,196,236);
+    border: 3px solid rgb(68,196,236);
+    margin: 5px;
+}
+
+.homepage-button:hover {
+    background-color: rgb(68,196,236);
+    color: white;
+}
+
+.active {
+    background-color: rgb(68,196,236);
+    color: white;
+}
+
+.submit-button {
+    height: 30px;
+    width: 70px;
+}
+
+input {
+    padding: 6px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: .75rem;
+    font-size: large;
+    text-align: center;
+}
+
+input:focus{
+    outline: none;
+}
+
+button:focus{
+    outline: none;
+}
+
+textarea {
+    padding: 6px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: .75rem;
+    font-size: large;
+    text-align: center;
+    height: 170px;
+    width: 400px;
+}
+
+
+.form-element{
+    margin: 30px;
+}
+
+.member-button {
+    height: 20px;
+    width: 20%;
+    font-size: 14px;
+    padding: 3px;
+    border: 2px solid #00B7FF;
+}
+
+.member-button:disabled {
+    color: #bbbbbb;
+    cursor: default;
+    border: 2px solid #bbbbbb;
+
+}
+
+.member-button:disabled:hover {
+    background-color: transparent;
+    color: #bbbbbb;
+}
+
+#error {
+    text-align: center;
+    color: #f62459;
+}
