@@ -2,7 +2,7 @@
 <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css'>
 <link rel="stylesheet" href="stylesheets/syncotrackjackets.css">
 <h1 class="title">Synco Track Jackets</h1>
-<div class="form-container">
+<div id="form" class="form-container">
 
     <div class="form-element">
         Your Name <br> <input class="name-input" id="name">
@@ -37,24 +37,34 @@
 
     <div style="display:none" id="contribute-jacket">
         <!--Place for members to choose from-->
-        <div class="form-element">
-            Which Syncos (if any) do you want to order a jacket for?
+        <div id="choice" class="form-element">
+            How would you like to contribute? <br>
+            <button id="members-choice" class="homepage-button choice-button">Contribute to Specific Syncos!</button>
+            <button id="numbers-choice" class="homepage-button choice-button">Choose for me please!</button>
+        </div>
+        <div style="display: none" id="syncos" class="form-element">
+            Which Syncos (if any) do you want to order a jacket for? Check out our <a href="http://syncopasian.com/#/current-members" target="_blank">current members</a> :)
             <div id="member-buttons">
-                <button class="homepage-button member-button">Chris Chang (tenor)</button>
-                <button class="homepage-button member-button">Daniel Liu (bari)</button>
-                <button class="homepage-button member-button">Daniel Whatley (bari)</button>
-                <button class="homepage-button member-button">Emily Hu (mezzo)</button>
-                <button class="homepage-button member-button">Janice Yang (sop)</button>
-                <button class="homepage-button member-button">Justin Park (bass)</button>
-                <button class="homepage-button member-button">Kevin Mao (tenor)</button>
-                <button class="homepage-button member-button">Maddy Zhang (sop)</button>
-                <button class="homepage-button member-button">Melody Phu (alto)</button>
-                <button class="homepage-button member-button">Rachel Zhang (mezzo)</button>
-                <button class="homepage-button member-button">Shannon Hwang (mezzo)</button>
-                <button class="homepage-button member-button">TC Qin (bass)</button>
-                <button class="homepage-button member-button">Tianyi Zeng (tenor)</button>
+                <button id="cchang" class="homepage-button member-button">Chris Chang (tenor)</button>
+                <button id="dliu" class="homepage-button member-button">Daniel Liu (bari)</button>
+                <button id="dwhatley" class="homepage-button member-button">Daniel Whatley (bari)</button>
+                <button id="ehu" class="homepage-button member-button">Emily Hu (mezzo)</button>
+                <button id="jyang" class="homepage-button member-button">Janice Yang (sop)</button>
+                <button id="jpark" class="homepage-button member-button">Justin Park (bass)</button>
+                <button id="kmao" class="homepage-button member-button">Kevin Mao (tenor)</button>
+                <button id="mzhang" class="homepage-button member-button">Maddy Zhang (sop)</button>
+                <button id="mphu" class="homepage-button member-button">Melody Phu (alto)</button>
+                <button id="rzhang" class="homepage-button member-button">Rachel Zhang (mezzo)</button>
+                <button id="shwang" class="homepage-button member-button">Shannon Hwang (mezzo)</button>
+                <button id="tqin" class="homepage-button member-button">TC Qin (bass)</button>
+                <button id="tzeng" class="homepage-button member-button">Tianyi Zeng (tenor)</button>
             </div>
         </div>
+
+        <div style="display: none" id="number-to-contribute" class="form-element">
+            How many to contribute? <br> <input id="number-to-contribute-input">
+        </div>
+
         <div class="form-element">
             Message for your contributee? (optional)<br> <textarea style="text-align: left" id="full-message-input"></textarea>
         </div>
@@ -73,13 +83,41 @@
 
         <button onclick="submitContributeJacket()" class="homepage-button submit-button">submit</button>
     </div>
+    <div id="error" style="display: none">
+        Uh oh! Looks like you forgot some fields.
+    </div>
+
 </div>
 
-<div id="error" style="display: none">
-    Uh oh! Looks like you forgot some fields.
+<div style="display:none; text-align: center; color: white" id="thanks">
+
+    Thanks! Expect an email confirmation from Alex soon :)
 </div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+
+    let socket = io();
+
+    document.getElementById("members-choice").addEventListener("click", function() {
+        document.getElementById("choice").style.display = "none";
+        document.getElementById("syncos").style.display = "block";
+
+    });
+
+
+    document.getElementById("numbers-choice").addEventListener("click", function() {
+        document.getElementById("choice").style.display = "none";
+        document.getElementById("number-to-contribute").style.display = "block";
+
+    });
+
+
+</script>
 
 <script>
+    let claimed = new Set();
+
     let btnContainer = document.getElementById("member-buttons");
 
     let btns = btnContainer.getElementsByClassName("member-button");
@@ -88,14 +126,28 @@
         console.log(i);
         btns[i].addEventListener("click", function() {
             console.log(this.innerText)
+            // socket.emit("claim", this.id)
             if (this.className.includes("active")) {
                 this.className = this.className.replace(" active", "");
+                claimed.delete(this.id)
             }
             else {
+                claimed.add(this.id);
                 this.className += " active";
             }
         });
     }
+
+    socket.on('claim', function(msg){
+        console.log(msg)
+        for (let claimedmember of msg["claimed"].values()) {
+            if (document.getElementById(claimedmember)) {
+                document.getElementById(claimedmember).disabled = true;
+            }
+        }
+    });
+
+
 
     function submitContributeJacket() {
         if (!document.getElementById("name").value || !document.getElementById("email").value) {
@@ -104,7 +156,9 @@
         else {
             let info = {
                 "name": document.getElementById("name").value,
+                "number": document.getElementById("number-to-contribute-input").value,
                 "email": document.getElementById("email").value,
+                "claimed": Array.from(claimed),
                 "message": document.getElementById("full-message-input").value,
                 "want-one": document.getElementById("want-one-input").value,
                 "orderer-info": document.getElementById("want-one-input").value,
@@ -113,9 +167,15 @@
             }
 
             console.log(info);
+            socket.emit("data", info)
+            document.getElementById("form").style.display = "none";
+            document.getElementById("thanks").style.display = "block";
+
         }
     }
+
     function toggleForm(formIndex) {
+        socket.emit("requestClaimed", "req");
         if (formIndex === 1) {
             document.getElementById("contribute-donation").style.display = "block";
             document.getElementById("contribute-jacket").style.display = "none";

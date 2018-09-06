@@ -8,31 +8,6 @@ const bodyParser = require('body-parser')
 //var aws = require('aws-sdk')
 //var multerS3 = require('multer-storage-s3')
 //s3 = new aws.S3();
-/*
-//aws.config.update({
-    secretAccessKey: '1CUKv8kGixh9eSbO7kcd+vNPvgUcE0DXnkqfrYtY'
-,
-    accessKeyId: 'AKIAJGJLPYFT6NFYVO5A',
-    region: 'us-west-2'
-});*/
-
-/*
-var upload = multer({
-    storage: multerS3({
-        s3: s3,
-        bucket: 'alexlchen-gallery-photos',
-        key: function (req, file, cb) {
-            console.log('ping')
-            console.log(file);
-            console.log(file.s3.Location)
-            cb(null, concat(file.originalname)); //use Date.now() for unique file keys
-        },
-        filename: function( req, file, cb ) {
-            cb( null, file.fieldname + '-' + Date.now() + '.jpg'); 
-        }
-    })
-});
-*/
 /* GET home page. */
 router.get('/', function(req, res, next) {
   // res.render('index', { title: 'Express' });
@@ -82,4 +57,5 @@ router.get('/image', function (req, res) {
     res.sendfile(path.resolve('./uploads/jenna1.jpg'));
 }); 
 */
+
 module.exports = router;
