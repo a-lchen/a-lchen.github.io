@@ -13,9 +13,9 @@
     </div>
 
     <div class="main-button-holder">
-        <button onClick="toggleForm(1)" class="homepage-button">Contribute a Donation!</button>
+        <button onClick="toggleForm(2)" class="homepage-button">Buy a jacket for a current Synco (or myself)</button>
+        <button onClick="toggleForm(1)" class="homepage-button">Other donation</button>
 
-        <button onClick="toggleForm(2)" class="homepage-button">Contribute/Buy a full jacket</button>
     </div>
 
     <div style="display:none" id="contribute-donation">
@@ -37,12 +37,12 @@
 
     <div style="display:none" id="contribute-jacket">
         <!--Place for members to choose from-->
-        <div id="choice" class="form-element">
-            How would you like to contribute? <br>
-            <button id="members-choice" class="homepage-button choice-button">Contribute to Specific Syncos!</button>
-            <button id="numbers-choice" class="homepage-button choice-button">Choose for me please!</button>
-        </div>
-        <div style="display: none" id="syncos" class="form-element">
+        <!--<div id="choice" class="form-element">-->
+            <!--How would you like to contribute? <br>-->
+            <!--<button id="members-choice" class="homepage-button choice-button">Contribute to Specific Syncos!</button>-->
+            <!--&lt;!&ndash;<button id="numbers-choice" class="homepage-button choice-button">Choose for me please!</button>&ndash;&gt;-->
+        <!--</div>-->
+        <div id="syncos" class="form-element">
             Which Syncos (if any) do you want to order a jacket for? Check out our <a href="http://syncopasian.com/#/current-members" target="_blank">current members</a> :)
             <div id="member-buttons">
                 <button id="cchang" class="homepage-button member-button">Chris Chang (tenor)</button>
@@ -59,10 +59,6 @@
                 <button id="tqin" class="homepage-button member-button">TC Qin (bass)</button>
                 <button id="tzeng" class="homepage-button member-button">Tianyi Zeng (tenor)</button>
             </div>
-        </div>
-
-        <div style="display: none" id="number-to-contribute" class="form-element">
-            How many to contribute? <br> <input id="number-to-contribute-input">
         </div>
 
         <div class="form-element">
