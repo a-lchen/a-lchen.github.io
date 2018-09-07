@@ -108,6 +108,20 @@ io.on('connection', function(socket){
 
     });
 
+    socket.on('requestInfo', function (msg) {
+        fs.readFile('progress.txt', "utf8", function read(err, data) {
+            console.log(data)
+            if (err) {
+                console.log(err)
+            }
+            else {
+                console.log("emitting progress percent")
+                io.emit('getInfo', {"progressPercent": data.replace(/\n|\r/g, "")});
+            }
+        });
+
+    });
+
 
     socket.on('claim', function(msg) {
         console.log("claimed")

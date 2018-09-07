@@ -7,7 +7,9 @@
     <div id="myProgress">
         <div id="myBar"></div>
     </div>
+    <div id="percentShow" class="form-element">
 
+    </div>
     <div class="form-element">
         Your Name <br> <input class="name-input" id="name">
     </div>
@@ -122,6 +124,7 @@
 
 <script>
     let claimed = new Set();
+    socket.emit("requestInfo", "req");
 
     let btnContainer = document.getElementById("member-buttons");
 
@@ -150,6 +153,13 @@
                 document.getElementById(claimedmember).disabled = true;
             }
         }
+    });
+
+    socket.on('getInfo', function(msg){
+        console.log(msg);
+        console.log("got info")
+        document.getElementById("myBar").style.width = msg["progressPercent"] + "%";
+        document.getElementById("percentShow").innerText = "Good work Syncofam! We're " + msg["progressPercent"] + "% of the way there!"
     });
 
 
@@ -189,6 +199,8 @@
             document.getElementById("contribute-jacket").style.display = "block";
         }
     }
+
+
 
 
 </script>
