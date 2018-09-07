@@ -37,6 +37,14 @@
         </div>
 
         <div class="form-element">
+            Do you want a jacket? (optional) <br> <input id="other-want-one-input">
+        </div>
+
+        <div class="form-element">
+            If yes to previous: address and size <br> <textarea id="other-orderer-info-input"></textarea>
+        </div>
+
+        <div class="form-element">
             Venmo Username or other form of payment? <br> <input id="payment-donation-input">
         </div>
 
@@ -175,8 +183,31 @@
                 "claimed": Array.from(claimed),
                 "message": document.getElementById("full-message-input").value,
                 "want-one": document.getElementById("want-one-input").value,
-                "orderer-info": document.getElementById("want-one-input").value,
+                "orderer-info": document.getElementById("orderer-one-input").value,
                 "payment": document.getElementById("payment-contribute-input").value,
+
+            }
+
+            console.log(info);
+            socket.emit("data", info)
+            document.getElementById("form").style.display = "none";
+            document.getElementById("thanks").style.display = "block";
+
+        }
+    }
+
+    function submitContributeDonation()  {
+        if (!document.getElementById("name").value || !document.getElementById("email").value) {
+            document.getElementById("error").style.display = "block";
+        }
+        else {
+            let info = {
+                "name": document.getElementById("name").value,
+                "email": document.getElementById("email").value,
+                "message": document.getElementById("donation-message-input").value,
+                "want-one": document.getElementById("other-want-one-input").value,
+                "orderer-info": document.getElementById("other-orderer-one-input").value,
+                "payment": document.getElementById("payment-donation-input").value,
 
             }
 
