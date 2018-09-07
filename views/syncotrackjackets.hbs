@@ -4,6 +4,10 @@
 <h1 class="title">Synco Track Jackets</h1>
 <div id="form" class="form-container">
 
+    <div id="myProgress">
+        <div id="myBar"></div>
+    </div>
+
     <div class="form-element">
         Your Name <br> <input class="name-input" id="name">
     </div>
@@ -19,6 +23,9 @@
     </div>
 
     <div style="display:none" id="contribute-donation">
+        <div class="form-element">
+            (Contribute an amount of your choice, and let Alex choose where the funds go!)
+        </div>
         <div class="form-element">
             Amount to Contribute<br> <input class="contribute-input" id="contribute-input">
         </div>
@@ -44,6 +51,8 @@
         <!--</div>-->
         <div id="syncos" class="form-element">
             Which Syncos (if any) do you want to order a jacket for? Check out our <a href="http://syncopasian.com/#/current-members" target="_blank">current members</a> :)
+            <br> If you don't want to choose, select "other donation"
+            <br><br>
             <div id="member-buttons">
                 <button id="cchang" class="homepage-button member-button">Chris Chang (tenor)</button>
                 <button id="dliu" class="homepage-button member-button">Daniel Liu (bari)</button>
@@ -152,7 +161,6 @@
         else {
             let info = {
                 "name": document.getElementById("name").value,
-                "number": document.getElementById("number-to-contribute-input").value,
                 "email": document.getElementById("email").value,
                 "claimed": Array.from(claimed),
                 "message": document.getElementById("full-message-input").value,
