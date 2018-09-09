@@ -125,7 +125,7 @@ textarea {
     color: #bbbbbb;
 }
 
-#error {
+#error, #number-error {
     text-align: center;
     color: #f62459;
 }

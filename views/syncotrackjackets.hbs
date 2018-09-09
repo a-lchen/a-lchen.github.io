@@ -29,7 +29,7 @@
             (Contribute an amount of your choice, and let Alex choose where the funds go!)
         </div>
         <div class="form-element">
-            Amount to Contribute<br> <input class="contribute-input" id="contribute-input">
+            Amount to Contribute ($)<br> <input class="contribute-input" id="contribute-input">
         </div>
 
         <div class="form-element">
@@ -99,7 +99,12 @@
         <button onclick="submitContributeJacket()" class="homepage-button submit-button">submit</button>
     </div>
     <div id="error" style="display: none">
-        Uh oh! Looks like you forgot some fields.
+        Uh oh! Looks like you forgot Name or Email.
+    </div>
+
+
+    <div id="number-error" style="display: none">
+        Please input a number for your contribution!
     </div>
 
 </div>
@@ -200,10 +205,16 @@
         if (!document.getElementById("name").value || !document.getElementById("email").value) {
             document.getElementById("error").style.display = "block";
         }
+
+        else if (isNaN(document.getElementById("contribute-input").value)){
+            document.getElementById("error").style.display = "none";
+            document.getElementById("number-error").style.display = "block";
+        }
         else {
             let info = {
                 "name": document.getElementById("name").value,
                 "email": document.getElementById("email").value,
+                "contribution" : document.getElementById("contribute-input").value,
                 "message": document.getElementById("donation-message-input").value,
                 "want-one": document.getElementById("other-want-one-input").value,
                 "orderer-info": document.getElementById("other-orderer-info-input").value,

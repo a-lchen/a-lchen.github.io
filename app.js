@@ -104,6 +104,16 @@ io.on('connection', function(socket){
                 console.log(err);
             }
         }))
+        if (msg["contribution"]){
+            fs.readFile('progress.txt', "utf8", function read(err, data) {
+                fs.writeFile("progress.txt", Number(data.replace(/[\n\r]/g, "")) + Number(msg["contribution"]), ((err) => {
+                    if (err) {
+                        console.log("error");
+                        console.log(err);
+                    }
+                }));
+            });
+        }
 
 
     });
@@ -116,7 +126,8 @@ io.on('connection', function(socket){
             }
             else {
                 console.log("emitting progress percent")
-                io.emit('getInfo', {"progressPercent": data.replace(/\n|\r/g, "")});
+                let amount = Math.floor(((claimed.size * 135.0 + Number(data.replace(/[\n\r]/g, "")))/(135 * 14)) * 10000)/100;
+                io.emit('getInfo', {"progressPercent": amount});
             }
         });
 
