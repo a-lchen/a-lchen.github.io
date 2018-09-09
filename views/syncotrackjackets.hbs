@@ -171,8 +171,9 @@
     socket.on('getInfo', function(msg){
         console.log(msg);
         console.log("got info")
-        document.getElementById("myBar").style.width = msg["progressPercent"] + "%";
-        document.getElementById("percentShow").innerText = "Good work Syncofam! We're " + msg["progressPercent"] + "% of the way there!"
+        let perc = Math.min(100, msg["progressPercent"])
+        document.getElementById("myBar").style.width = perc + "%";
+        document.getElementById("percentShow").innerText = "Good work Syncofam! We're " + perc + "% of the way there!"
     });
 
 
