@@ -31,7 +31,17 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/jenna', jenna);
 
-let claimed = new Set();
+let claimed;
+
+fs.readFile('claimed.txt', function read(err, data) {
+    if (err) {
+        throw err;
+    }
+    let content = JSON.parse(data);
+    console.log("read file and got back " + data)
+    claimed = new Set(content);
+});
+
 
 
 // catch 404 and forward to error handler
